@@ -1,4 +1,7 @@
-// BUDGET CONTROLLER
+///////////////////////
+// BUDGET CONTROLLER//
+//////////////////////
+
 var budgetController = (function () {
 
     // Expense function constructor
@@ -66,8 +69,10 @@ var budgetController = (function () {
 
 
 
+///////////////////
+// UI CONTROLLER//
+/////////////////
 
-// UI CONTROLLER
 var UIController = (function () {
 
     // Object to store DOM identifier strings
@@ -115,6 +120,21 @@ var UIController = (function () {
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
         },
 
+        // Function that clears input field
+        clearFields: function() {
+            var fields, fieldsArr;
+
+            fields = document.querySelectorAll(DOMStrings.inputDescription + ', ' + DOMStrings.inputValue);
+
+            fieldsArr = Array.prototype.slice.call(fields);
+
+            fieldsArr.forEach(function(current, index, array) {
+                current.value = "";
+            });
+
+            fieldsArr[0].focus();
+        },
+
         // Make DOMStrings object public
         getDOMStrings: function () {
             return DOMStrings;
@@ -125,8 +145,10 @@ var UIController = (function () {
 
 
 
+//////////////////////////
+//GLOBAL APP CONTROLLER//
+////////////////////////
 
-//GLOBAL APP CONTROLLER
 var controller = (function (budgetCtrl, UICtrl) {
 
     //Function that sets up all event listeners
@@ -159,10 +181,13 @@ var controller = (function (budgetCtrl, UICtrl) {
         // 3. Add new item to UI
         UICtrl.addListItem(newItem, input.type);
 
-        // 4. Calculate the budget
+        // 4. Clear the fields
+        UICtrl.clearFields();
+
+        // 5. Calculate the budget
 
 
-        // 5. Display the budget on the UI
+        // 6. Display the budget on the UI
     }
 
     // Initializaton function 
